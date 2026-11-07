@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090909">
+<title>Last Green External</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090909;color:white;font-family:Arial,sans-serif;padding:20px}
+header{text-align:center;padding:25px;color:#ff303b;font-size:25px;font-weight:bold;letter-spacing:3px}
+.card{background:#171717;border:1px solid #76232a;border-radius:15px;padding:18px;margin:15px 0}
+h2{font-size:15px;color:#ff414b}
+p{color:#aaa;font-size:13px}
+button{width:100%;padding:14px;background:#a71925;color:white;border:0;border-radius:10px;font-weight:bold;margin-top:12px}
+.radar{width:240px;height:240px;border:2px solid #ff303b;border-radius:50%;margin:20px auto;background:repeating-radial-gradient(circle,#151515 0 30px,#6b2028 31px 32px);position:relative}
+.dot{position:absolute;width:9px;height:9px;background:#ff303b;border-radius:50%;box-shadow:0 0 10px red}
+.switch{accent-color:#ff303b;transform:scale(1.3)}
+.status{color:#4ade80;font-size:12px}
+</style>
+</head>
+<body>
+<header>LAST GREEN<br>EXTERNAL V1.0</header>
+
+<div class="card">
+<h2>STATUS DO SISTEMA</h2>
+<p class="status">● PAINEL ONLINE</p>
+<p>Interface visual independente do jogo.</p>
+</div>
+
+<div class="card">
+<h2>MÓDULOS</h2>
+<p>Radar demonstrativo <input class="switch" type="checkbox" checked id="radarOn"></p>
+<p>ESP demonstrativo <input class="switch" type="checkbox" id="espOn"></p>
+<p>Assistência visual <input class="switch" type="checkbox" id="aimOn"></p>
+<p>HUD <input class="switch" type="checkbox" checked id="hudOn"></p>
+</div>
+
+<div class="card" id="radarCard">
+<h2>RADAR TÁTICO</h2>
+<div class="radar" id="radar">
+<span class="dot" style="top:30%;left:60%"></span>
+<span class="dot" style="top:65%;left:30%"></span>
+<span class="dot" style="top:48%;left:78%"></span>
+</div>
+<p style="text-align:center">Pontos simulados, sem dados do jogo.</p>
+<button onclick="atualizar()">ATUALIZAR RADAR</button>
+</div>
+
+<div class="card">
+<h2>CONFIGURAÇÕES</h2>
+<button onclick="restaurar()">RESTAURAR PADRÃO</button>
+</div>
+
+<script>
+function atualizar(){
+document.querySelectorAll('.dot').forEach(d=>{
+d.style.left=(10+Math.random()*75)+'%';
+d.style.top=(10+Math.random()*75)+'%';
+});
+}
+document.getElementById('radarOn').onchange=e=>{
+document.getElementById('radarCard').style.opacity=e.target.checked?'1':'.3';
+};
+function restaurar(){
+document.getElementById('radarOn').checked=true;
+document.getElementById('espOn').checked=false;
+document.getElementById('aimOn').checked=false;
+document.getElementById('hudOn').checked=true;
+document.getElementById('radarCard').style.opacity='1';
+}
+</script>
+</body>
+</html>
